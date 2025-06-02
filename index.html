@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community Event Portal</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Inline Style for Gallery (optional if in CSS) -->
+  <style>
+    .gallery {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border: 2px solid #333;
+      border-radius: 8px;
+    }
+    .highlight {
+      background-color: #fff3cd;
+      padding: 10px;
+      border-left: 4px solid #ffc107;
+    }
+  </style>
+</head>
+<body class="bg-light" onload="pageLoaded()">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">Community Portal</a>
+      <div>
+        <a class="nav-link text-white d-inline" href="#home">Home</a>
+        <a class="nav-link text-white d-inline" href="#events">Events</a>
+        <a class="nav-link text-white d-inline" href="#contact">Contact</a>
+        <a class="nav-link text-white d-inline" href="help.html" target="_blank">Help</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div id="welcomeBanner" class="bg-primary text-white p-3 rounded mb-3">
+      Welcome to the Community Event Portal!
+    </div>
+    <div class="alert alert-danger fw-bold">Special Offer! Register now and get goodies.</div>
+    <p class="highlight">Don't miss our upcoming festivals and workshops!</p>
+
+    <section id="home" class="my-4">
+      <h2>Welcome to Your Community Portal</h2>
+    </section>
+
+    <section id="events" class="my-4">
+      <h2>Upcoming Events</h2>
+      <div id="eventsContainer" class="row"></div>
+    </section>
+
+    <section id="contact" class="my-4">
+      <h2>Contact Us</h2>
+    </section>
+
+    <!-- ✅ Linked Local Images -->
+    <h3>Past Events</h3>
+    <div class="row text-center mb-4">
+      <div class="col-md-4">
+        <img src="event1.jpg" alt="Event 1" class="gallery mb-2 img-fluid">
+        <p>Music</p>
+      </div>
+      <div class="col-md-4">
+        <img src="event2.jpg" alt="Event 2" class="gallery mb-2 img-fluid">
+        <p>Food</p>
+      </div>
+      <div class="col-md-4">
+        <img src="event3.jpg" alt="Event 3" class="gallery mb-2 img-fluid">
+        <p>Art</p>
+      </div>
+    </div>
+
+    <!-- ✅ Event Registration Form -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h3 class="card-title">Register for an Event</h3>
+        <form id="eventForm">
+          <input type="text" name="name" class="form-control mb-2" placeholder="Your Name" required autofocus>
+          <input type="email" name="email" class="form-control mb-2" placeholder="Your Email" required>
+          <input type="tel" class="form-control mb-2" id="phone" placeholder="Phone Number" onblur="validatePhone()">
+          <input type="date" class="form-control mb-2" name="date">
+          <select name="event" id="eventType" class="form-select mb-2" onchange="updateFee()">
+            <option value="">Choose Event</option>
+            <option value="music">Music</option>
+            <option value="food">Food</option>
+          </select>
+          <textarea id="feedback" class="form-control mb-2" placeholder="Your feedback..." onkeyup="countCharacters()"></textarea>
+          <input type="submit" class="btn btn-primary" value="Submit">
+          <div id="formMessage" class="mt-2 text-success fw-bold"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Preferences -->
+    <div class="mb-4">
+      <h4>Save Your Preference</h4>
+      <div class="d-flex gap-2">
+        <select id="eventPref" class="form-select w-auto" onchange="savePreference()">
+          <option value="music">Music</option>
+          <option value="food">Food</option>
+        </select>
+        <button class="btn btn-warning" onclick="clearPreferences()">Clear Preferences</button>
+      </div>
+    </div>
+
+    <!-- Geolocation -->
+    <div class="mb-4">
+      <h4>Find Nearby Events</h4>
+      <button class="btn btn-info" onclick="getLocation()">Find Nearby Events</button>
+      <p id="locationResult" class="mt-2"></p>
+    </div>
+
+    <!-- ✅ Local Video File -->
+    <div class="mb-4">
+      <h4>Watch Our Promo Video</h4>
+      <video src="promo.mp4" class="w-100 rounded" controls oncanplay="alert('Video ready to play')"></video>
+    </div>
+  </div>
+
+  <!-- Link JS -->
+  <script src="main.js"></script>
+</body>
+</html>
